@@ -1,8 +1,8 @@
 package main
 
 /*
-docs
-*/
+
+ */
 type Room struct {
 	door      [4]int
 	item      string

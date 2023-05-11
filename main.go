@@ -44,8 +44,10 @@ func main() {
 				if isGoal(escapeRoom, &player) {
 					return
 				}
-			}else if ev.Key == termbox.KeySpace { // 아이템 줍기 
-			Interaction(&escapeRoom, &player)
+			} else if ev.Ch == 'e' { // 아이템 줍기 
+				Interaction(&escapeRoom, &player)
+			} else if ev.Ch == 'k' { 
+				itemEvent(&escapeRoom, &player)
 			}else if ev.Key == termbox.KeyEsc {
 				fmt.Println("ESC key pressed. Exiting...")
 				termbox.Close()
