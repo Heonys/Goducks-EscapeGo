@@ -7,27 +7,12 @@ import (
 )
 
 func main() {
-	escapeRoom, player := initalize()
+	escapeRoom, player := initialize()
 	err := termbox.Init()
 	if err != nil {
 		panic(err)
 	}
 	defer termbox.Close()
-
-
-
-	fmt.Println(tutotrial)
-	switch ev := termbox.PollEvent(); ev.Type {
-	case termbox.EventKey:
-			if ev.Key == termbox.KeySpace {
-				break
-			} else if ev.Key == termbox.KeyEsc {
-					fmt.Println("ESC key pressed. Exiting...")
-					termbox.Close()
-					return
-			} 
-	}
-
 
 	for {
 		printPattern(&escapeRoom, &player)
@@ -44,9 +29,9 @@ func main() {
 				if isGoal(escapeRoom, &player) {
 					return
 				}
-			} else if ev.Ch == 'e' { // 아이템 줍기 
+			} else if ev.Ch == 'e' {  // 아이템 줍기 
 				Interaction(&escapeRoom, &player)
-			} else if ev.Ch == 'k' { 
+			} else if ev.Ch == 'f' {  // 아이템 사용  
 				itemEvent(&escapeRoom, &player)
 			}else if ev.Key == termbox.KeyEsc {
 				fmt.Println("ESC key pressed. Exiting...")

@@ -53,13 +53,16 @@ var Interaction = func(escapeRoom *([10][10]Room), player *Playable) {
 	}
 }
 
-
 var CheckDoorStatus = func(CurrentRoom *Room, direction Direction, player *Playable) {
 	switch CurrentRoom.door[direction] {
 	case 0:
 		return
-	case 1, 2:
+	case 1:
 		CheckDirection(direction, player)
+	case 2:
+		if CurrentRoom.isBroken {
+			CheckDirection(direction, player)
+		}
 	case 3:
 		if !player.inven.hammer {
 			return
@@ -90,6 +93,7 @@ var itemEvent = func(escapeRoom *([10][10]Room), player *Playable){
 	switch flag {
 	case 2:
 		fmt.Println("문 열기")
+		CurrentRoom.isBroken = true
 	case 3:
 		fmt.Println("망치 사용")
 		CurrentRoom.isBroken = true
@@ -98,9 +102,6 @@ var itemEvent = func(escapeRoom *([10][10]Room), player *Playable){
 		CurrentRoom.isBroken = true
 	}	
 }
-
-
-
 
 var CheckDirection = func(direction Direction, player *Playable) {
 	switch direction {
